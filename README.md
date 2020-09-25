@@ -25,8 +25,9 @@
 | status | integer | null: false |
 | ship_fee | integer | null: false |
 | ship_area | integer | null: false |
+| ship_day | integer | null: false |
 | price| integer | null: false |
-| user_id | references | null: false, foreign_key: true |
+| user | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -37,15 +38,24 @@
 
 | Column | Type | Options |
 | ------ | ---- | ------- |
-| user_id | references | null: false, foreign_key: true |
-| item_id | references | null: false, foreign_key: true |
-| credit_card| integer | null: false |
-| postcard | integer | null: false |
-| prefecture | integer | null: false |
-| city | string | null: false |
-| block | string | null: false |
-| phone | integer | null: false |
+| user | references | null: false, foreign_key: true |
+| item | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :item
 - belongs_to :user
+- has_one :address
+
+## addressesテーブル
+
+| Column | Type | Options |
+| ------ | ---- | ------- |
+| postcard | string | null: false |
+| prefecture_id | integer | null: false |
+| city | string | null: false |
+| block | string | null: false |
+| phone | string | null: false |
+| order | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :order
