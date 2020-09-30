@@ -70,10 +70,10 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include('Price must be less than 10000000')
     end
 
-    it '販売価格は半角数字のみ保存可能であること'do
-      @item.price = "１２００"
+    it '販売価格は半角数字のみ保存可能であること' do
+      @item.price = '１２００'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is not a number")
+      expect(@item.errors.full_messages).to include('Price is not a number')
     end
 
     it 'imgaeが空では登録できないこと' do
