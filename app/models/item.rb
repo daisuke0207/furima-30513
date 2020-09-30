@@ -7,9 +7,8 @@ class Item < ApplicationRecord
   validates :ship_fee_id, numericality: { other_than: 1 }
   validates :ship_area_id, numericality: { other_than: 1 }
   validates :ship_day_id, numericality: { other_than: 1 }
-  validates :price, numericality: {only_integer: true, greater_than: 299, less_than: 10000000}, format: {with: /\A[0-9]+\z/}
+  validates :price, numericality: { only_integer: true, greater_than: 299, less_than: 10_000_000 }, format: { with: /\A[0-9]+\z/ }
 
-  
   belongs_to :user
   has_one :order
   has_one_attached :image
