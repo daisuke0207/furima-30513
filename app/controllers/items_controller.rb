@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   before_action :move_to_session, only: [:new, :edit]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :move_to_root, only: :edit
+
   def index
     @items = Item.includes(:user).order('created_at DESC')
   end
@@ -49,6 +51,10 @@ class ItemsController < ApplicationController
 
   def move_to_session
     redirect_to new_user_session_path unless user_signed_in?
+  end
+
+  def move_to_root
+    redirect_to root_path if: @item.order
   end
 
   def set_item
